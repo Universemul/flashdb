@@ -11,8 +11,6 @@ I will then update the `README` to let you inform about my thought and progress.
 
 Do not hesitate to send me an email if you want to join the project :)
 
-## Quick Links
-
 ## Introduction
 
 FlashDB is a lightweight schemaless oriented database optimized for reading. It's written in pure Python.
