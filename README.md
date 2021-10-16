@@ -13,6 +13,8 @@ Do not hesitate to send me an email if you want to join the project :)
 
 ## Quick Links
 
+## Introduction
+
 FlashDB is a lightweight schemaless oriented database optimized for reading. It's written in pure Python.
 
 You can use Flash DB if:
@@ -22,8 +24,6 @@ You can use Flash DB if:
 - You want to test an open source project :D
 - You don't need complexe queries like multiple aggregations or Multiple subqueries
 - You want to deploy your application fast 
-
-## Introduction
 
 ## Supported Python Versions
 
