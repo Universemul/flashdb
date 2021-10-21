@@ -19,7 +19,7 @@ You can use Flash DB if:
 - You need a small database without 10000 external dependencies.
 - You need fast read
 - You have no schema and no need to JOIN between your entities
-- You want to test an open source project :D
+- You want to participate to an open source project :D
 - You don't need complexe queries like multiple aggregations or Multiple subqueries
 - You want to deploy your application fast 
 
