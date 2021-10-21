@@ -17,6 +17,7 @@ A schema is better than thousand of words:
 
 It handles the connection from a client and check the authentication (username and password).
 
+If you want more informations about it, go to the [Frontend ADR](frontend_architecture.md)
 
 ### The Core component
 
@@ -34,7 +35,7 @@ We have 3 differents Data Structures:
 - A B tree for indexed field
 - A HasMap for non indexed field
 
-If you want more informations about it, go to the `Core ADR`. 
+If you want more informations about it, go to the [Core ADR](core_architecture.md) 
 
 
 ### The Storage component
@@ -46,7 +47,7 @@ The Store component is the one customisable by the developer. By default, FlashD
 
 The Storage handler handles the sharding and the way to hash the data. It doesn't care about the storage format.
 
-If you want more informations about it, go to the `Storage ADR`. 
+If you want more informations about it, go to the [Storage ADR](storage_architecture.md)
 
 ## Consequences
 
