@@ -11,7 +11,7 @@ This ADR will define the architecture of FlashDB. It will not enter into depth i
 ## Decision
 
 A schema is better than thousand of words: 
-![image](.media/architecture_flashdb.png)
+![image](media/architecture_flashdb.png)
 
 ### The Frontend component
 
