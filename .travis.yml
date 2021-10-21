@@ -8,4 +8,4 @@ python:
 install:
   - pip install -r install/requirements.txt
 script:
-  - echo "BUILT'
+  - echo 'BUILT'
