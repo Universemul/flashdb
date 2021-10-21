@@ -1,6 +1,8 @@
 # Flash DB
 
-[![Build Status](https://travis-ci.com/Universemul/flashdb.svg?branch=master)](https://travis-ci.com/Universemul/flashdb) [![license](https://img.shields.io/github/license/Universemul/flashdb)](https://raw.githubusercontent.com/Universemul/flashdbmaster/LICENSE) [![docs](https://img.shields.io/badge/docs-unknown-lightgrey)](https://universemul.github.io/flashdb/#/)
+[![Build Status](https://app.travis-ci.com/Universemul/flashdb.svg?branch=main)](https://app.travis-ci.com/Universemul/flashdb)
+[![license](https://img.shields.io/github/license/Universemul/flashdb)](https://raw.githubusercontent.com/Universemul/flashdbmaster/LICENSE) 
+[![docs](https://img.shields.io/badge/docs-unknown-lightgrey)](https://universemul.github.io/flashdb/#/)
 [![GitHub open-pull-requests](https://badgen.net/github/open-prs/universemul/flashdb)](https://https://github.com/Universemul/flashdb/pulls?q=is%3Aopen)
 [![GitHub open-issue](https://badgen.net/github/open-issues/universemul/flashdb)](https://https://github.com/Universemul/flashdb/issues?q=is%3Aopen)
 
