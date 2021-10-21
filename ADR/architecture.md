@@ -13,6 +13,12 @@ This ADR will define the architecture of FlashDB. It will not enter into depth i
 A schema is better than thousand of words: 
 
 
+### The Frontend component
+
+### The Core component
+
+### The Storage component
+
 ## Consequences
 
 Better understanding of FlashDB and a quick overview
