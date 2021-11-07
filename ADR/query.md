@@ -61,6 +61,16 @@ If I want to select all columns:
 }
 ```
 
+#### FROM
+
+Define the name of the index you want to perform the query
+
+```json
+{
+  "from": "myIndex"
+}
+```
+
 #### WHERE
 
 Allows you to filter the data. 
@@ -129,7 +139,6 @@ Default is `ASC`.
 
 The `name` is the name of the column you want to sort.  
 The `order` allows you to sort by `ASC` or `DESC`. Default is `ASC`.  
-
 
 #### LIMIT
 
