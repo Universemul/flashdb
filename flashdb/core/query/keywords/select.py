@@ -21,3 +21,4 @@ class SelectKeyword(Keyword):
 
     def parse(self):
         self.validate()
+        return self

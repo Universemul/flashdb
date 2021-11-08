@@ -4,6 +4,7 @@ from typing import Set
 
 class Keyword(ABC):
 
+    @staticmethod
     @abstractmethod
-    def mappings(self) -> Set:
+    def mappings() -> Set:
         pass

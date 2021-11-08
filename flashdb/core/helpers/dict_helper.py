@@ -6,4 +6,4 @@ def with_upper_keys(dictionary: Dict) -> Dict:
 
 
 def with_lower_keys(dictionary: Dict) -> Dict:
-    return dict((k, v.lower()) for k, v in dictionary.items())
+    return dict((k.lower(), v) for k, v in dictionary.items())
