@@ -7,11 +7,11 @@
 [![GitHub open-issue](https://badgen.net/github/open-issues/universemul/flashdb)](https://https://github.com/Universemul/flashdb/issues?q=is%3Aopen)
 
 
-
 This project is really (really) young. I don't have any code to push yet but I'm working on the architecture of the database.
 I will then update the `README` to let you inform about my thought and progress.
 
-Do not hesitate to send me an email if you want to join the project :)
+Do not hesitate to send me an email if you want to join the project :)  
+Discord Server: https://discord.gg/Esg77AHuNR
 
 ## Introduction
 
