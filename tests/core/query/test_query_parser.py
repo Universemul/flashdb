@@ -1,25 +1,66 @@
 import unittest
 
+from flashdb.core.query.exceptions.query_exception import EmptyValueError, ValidationError
 from flashdb.core.query.query_parser import QueryParser
-from flashdb.core.query.keywords.sort_keyword import SortKeyword
 
 
 class TestQueryParser(unittest.TestCase):
 
-    def test_parse_success(self):
+    def test_validate_success(self):
         qp = QueryParser({
+            'select': [
+                {
+                    'name': 'age'
+                }
+            ],
             'sort': {
-                'name': 'myColumn',
+                'name': 'age',
                 'order': 'desc'
             },
+            'index': 'Person',
             'limit': 4,
             'aggregate_by': 'myColumn2'
         })
-        qp.parse()
-        self.assertEqual("myColumn", qp.sort.name)
-        self.assertEqual(SortKeyword.Order.DESC, qp.sort.order)
-        self.assertEqual(4, qp.limit.limit)
-        self.assertEqual("myColumn2", qp.aggregate_by.group_name)
+        qp.validate()
+
+    def test_validate_withoutNotMandatoryKeywords_success(self):
+        qp = QueryParser({
+            'select': [
+                {
+                    'name': 'age'
+                }
+            ],
+            'index': 'Person',
+        })
+        qp.validate()
+
+    def test_validate_withoutSortName_throwException(self):
+        qp = QueryParser({
+            'select': [
+                {
+                    'name': 'age'
+                }
+            ],
+            'index': 'Person',
+            'sort': {
+                'order': "asc"
+            }
+        })
+        with self.assertRaises(ValidationError):
+            qp.validate()
+
+    def test_validate_withEmptyLimit_throwException(self):
+        qp = QueryParser({
+            'select': [
+                {
+                    'name': 'age'
+                }
+            ],
+            'index': 'Person',
+            'limit': ''
+        })
+        with self.assertRaises(EmptyValueError):
+            qp.validate()
 
 
 if __name__ == "__main__":

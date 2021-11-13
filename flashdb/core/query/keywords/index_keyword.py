@@ -1,6 +1,6 @@
 from typing import Set
 
-from flashdb.core.query.exceptions.parse_exception import ParseException
+from flashdb.core.query.exceptions.query_exception import ParseException
 from flashdb.core.query.keywords.base import Keyword
 
 
@@ -11,13 +11,12 @@ class IndexKeyword(Keyword):
         pass
 
     def __init__(self, s_query: str = None):
-        self.data = s_query
-        self.index = None
+        self.index = s_query
 
-    def validate(self):
-        if not self.data:
-            raise ParseException("An index is needed to perfom the query")
+    def validate(self) -> "Keyword":
+        if not self.index:
+            raise ParseException("[INDEX] An index is needed to perform the query")
+        return self
 
     def parse(self):
-        self.validate()
-        self.index = self.data
+        return self

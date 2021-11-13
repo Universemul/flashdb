@@ -93,23 +93,17 @@ The `filters` field is the definition of your filters. Each item of the array mu
 
 ```json
 {
-  "name": "test",
-  "condition": "",
-  "nested_filters": {
-    "operator": "",
-    "filters": [
-      {
-        "name": "",
-        "condition": ""
-      }
-    ]
-  }
+  "operator": "AND",
+  "conditions": [
+    "myColumn < 3",
+    "myColumn2 > 5"
+  ]
 }
 ```
 
-This field is a bit more complicated because you can have multiple filters. 
-The main thing to know about filtering is a group a filters have 1 or 1 only operator (`AND` or `OR`).  
-The condition is a string defined [here](#conditions)
+This field is a bit more complicated because you can have multiple filters.  
+The main thing to know about filtering is a group a filters have 1 and only 1 operator (`AND` or `OR`).  
+The condition is a string defined by a column and a condition ([here](#conditions))
 
 #### AGGREGATE_BY
 

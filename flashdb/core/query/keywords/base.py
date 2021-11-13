@@ -8,3 +8,7 @@ class Keyword(ABC):
     @abstractmethod
     def mappings() -> Set:
         pass
+
+    @abstractmethod
+    def validate(self) -> "Keyword":
+        pass

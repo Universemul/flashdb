@@ -1,25 +1,50 @@
-from typing import Set
+from enum import Enum
+from typing import Set, Dict
 
-from flashdb.core.query.exceptions.parse_exception import ParseException
+from flashdb.core.helpers.dict_helper import with_lower_keys
+from flashdb.core.query.exceptions.query_exception import ValidationError
+from flashdb.core.query.filters import BaseFilter
 from flashdb.core.query.keywords.base import Keyword
+from flashdb.core.query.operator import Operator
 
 
-class LimitKeyword(Keyword):
+class WhereKeyword(Keyword):
 
     @staticmethod
     def mappings() -> Set:
         pass
 
-    def __init__(self, s_query: str = None):
-        self.data = s_query
-        self.limit = None
-        self.is_mandatory = False
+    def __init__(self, s_query: Dict = None):
+        self.data = with_lower_keys(s_query) if s_query else {}
+        self.keys = self.data.keys()
+        self.default_operator = Operator.AND
+        self.filters = list()
 
-    def parse(self):
+    @staticmethod
+    def mappings() -> Set:
+        return {
+            "operator",
+            "filters"
+        }
+
+    def validate(self) -> "WhereKeyword":
         if not self.data:
             return self
-        try:
-            self.limit = int(self.data)
-        except ValueError:
-            raise ParseException(f"{self.data} is not a number")
+        if 'filters' not in self.keys:
+            raise ValidationError(f"[WHERE] `filters` is mandatory")
+        operator = self.data.get('operator', None)
+        if operator and not Operator.from_str(operator):
+            raise ValidationError(f"[WHERE] Incorrect or missing value for `operator`. Available values are: {Operator.AND}, {Operator.OR}")
+        for f in self.data['filters']:
+            _ope = f.get('operator', None)
+            if _ope and not Operator.from_str(_ope):
+                raise ValidationError(f"[WHERE] Incorrect or missing value for `operator`. Available values are: {Operator.AND}, {Operator.OR}")
+            conditions = f.get('conditions', None)
+            if not conditions:
+                raise ValidationError(f"[WHERE] Missing value for `conditions`.")
+            if not isinstance(conditions, list):
+                raise ValidationError(f"[WHERE] {conditions} is not a list")
+        return self
+
+    def parse(self):
         return self

@@ -1,32 +1,20 @@
-import enum
-from typing import Set
+from typing import Set, Dict
 
 from flashdb.core.helpers.dict_helper import with_lower_keys
-from flashdb.core.query.exceptions.parse_exception import ParseException
+from flashdb.core.query.exceptions.query_exception import EmptyValueError, ValidationError
 from flashdb.core.query.keywords.base import Keyword
+from flashdb.core.query.operator import Order
 
 
 class SortKeyword(Keyword):
 
-    class Order(enum.Enum):
-        ASC = "asc"
-        DESC = "desc"
-
-        @staticmethod
-        def from_str(label):
-            if label == "asc":
-                return SortKeyword.Order.ASC
-            if label == "desc":
-                return SortKeyword.Order.DESC
-            return None
-
     DEFAULT_VALUE = Order.ASC
 
-    def __init__(self, s_query: dict):
-        self.data = with_lower_keys(s_query)
-        self.keys = s_query.keys()
+    def __init__(self, s_query: Dict):
+        self.data = with_lower_keys(s_query) if s_query else {}
+        self.keys = self.data.keys()
         self.name = None
-        self.order = SortKeyword.Order.ASC
+        self.order = self.DEFAULT_VALUE
 
     @staticmethod
     def mappings() -> Set:
@@ -35,17 +23,20 @@ class SortKeyword(Keyword):
             "order"
         }
 
-    def validate(self):
-        diff_keys = self.keys ^ SortKeyword.mappings()
-        if diff_keys:
-            raise ParseException(f"Incorrect or missing keys. Available values are: {','.join(self.mappings())}")
+    def validate(self) -> "SortKeyword":
+        if not self.keys:
+            return self
+        if 'name' not in self.keys:
+            raise ValidationError("[SORT] `name` is mandatory")
+        if not self.data['name']:
+            raise EmptyValueError(f"[SORT] Empty `name` is not allowed")
         order = self.data.get('order', None)
-        if order and not SortKeyword.Order.from_str(order):
-            raise ParseException(f"Incorrect or missing value for order. Available values are: {SortKeyword.Order.ASC, SortKeyword.Order.DESC}")
+        if order and not Order.from_str(order):
+            raise ValidationError(f"[SORT] Incorrect or missing value for `order`. Available values are: {Order.ASC.value, Order.DESC.value}")
+        return self
 
     def parse(self):
-        self.validate()
         self.name = self.data['name']
         if 'order' in self.data:
-            self.order = SortKeyword.Order.from_str(self.data['order'])
+            self.order = Order.from_str(self.data['order'])
         return self

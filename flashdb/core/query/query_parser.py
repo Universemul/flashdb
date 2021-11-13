@@ -1,6 +1,5 @@
 from flashdb.core.helpers.dict_helper import with_lower_keys
-from flashdb.core.query.keywords import KEYWORDS, SORT, LIMIT, LimitKeyword, SortKeyword, AggregateByKeyword, \
-    AGGREGATE_BY
+from flashdb.core.query.keywords import KEYWORDS
 
 
 class QueryParser(object):
@@ -17,12 +16,10 @@ class QueryParser(object):
         self.aggregate_by = None
 
     def validate(self):
-        pass
+        for key in KEYWORDS:
+            keyword = KEYWORDS[key](self.query.get(key, None)).validate()
+            setattr(self, key, keyword)
 
     def parse(self):
-        if LIMIT in self.keys:
-            self.limit: LimitKeyword = KEYWORDS[LIMIT](self.query[LIMIT]).parse()
-        if SORT in self.keys:
-            self.sort: SortKeyword = KEYWORDS[SORT](self.query[SORT]).parse()
-        if AGGREGATE_BY in self.keys:
-            self.aggregate_by: AggregateByKeyword = KEYWORDS[AGGREGATE_BY](self.query[AGGREGATE_BY]).parse()
+        pass
+
