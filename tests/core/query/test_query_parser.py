@@ -1,6 +1,7 @@
 import unittest
 
 from flashdb.core.query.exceptions.query_exception import EmptyValueError, ValidationError
+from flashdb.core.query.operator import Operator
 from flashdb.core.query.query_parser import QueryParser
 
 
@@ -19,7 +20,24 @@ class TestQueryParser(unittest.TestCase):
             },
             'index': 'Person',
             'limit': 4,
-            'aggregate_by': 'myColumn2'
+            'aggregate_by': 'gender',
+            'where': {
+                'operator': Operator.AND.value,
+                'filters': [
+                    {
+                        'operator': Operator.OR.value,
+                        'conditions': [
+                            "age > 18",
+                            "is_emancipate = True"
+                        ]
+                    },
+                    {
+                        'conditions': [
+                            "gender = 'Male'"
+                        ]
+                    }
+                ]
+            }
         })
         qp.validate()
 
