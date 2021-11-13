@@ -25,7 +25,7 @@ This is the brain of FlashDB. It is responsible of all logical functionalities o
 
 The Core component is responsible of :
 - Thread Handling. When a client is connected, he gets its own thread. This thread is provided by the Core
-- Tokenize, parse and optimize a query
+- Parse the query query, detect errors and optimize if necessary
 - Choose the right Data Structure depending the query
 - Create and update the data structures used to speed up the processing of a query
 - Analyze the data coming from the storage and merge it

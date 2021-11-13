@@ -18,11 +18,11 @@ Discord Server: https://discord.gg/Esg77AHuNR
 FlashDB is a lightweight schemaless oriented database optimized for reading. It's written in pure Python.
 
 You can use Flash DB if:
-- You need a small database without 10000 external dependencies.
+- You need a small database without x external dependencies.
 - You need fast read
 - You have no schema and no need to JOIN between your entities
-- You want to participate to an open source project :D
-- You don't need complexe queries like multiple aggregations or Multiple subqueries
+- You want to participate to an open-source project :D
+- You don't need complexe queries like multiple aggregations or multiple subqueries
 - You want to deploy your application fast 
 
 ## Supported Python Versions
@@ -30,6 +30,13 @@ You can use Flash DB if:
 ## QuickStart
 
 ## TODO
+
+- Write the Query Parser:
+    - Define keyword
+    - Define conditions
+    - Define functions
+    - Error Handler
+    - Store the parsed query
 
 ## Contributing
 
