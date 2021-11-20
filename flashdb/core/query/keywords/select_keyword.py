@@ -1,18 +1,10 @@
 from typing import Set, List, Dict
 
-from flashdb.core.query.exceptions.query_exception import ParseException
+from flashdb.core.query.exceptions.query_exception import ParseException, EmptyValueError, ValidationError
 from flashdb.core.query.keywords.base import Keyword
 
 
 class SelectKeyword(Keyword):
-
-    @staticmethod
-    def mappings() -> Set:
-        return {
-            "name",
-            "as",
-            "apply_function"
-        }
 
     def __init__(self, s_query: List):
         self.data = s_query
@@ -22,11 +14,11 @@ class SelectKeyword(Keyword):
         for item in self.data:
             keys = item.keys()
             if 'name' not in keys:
-                raise ParseException("[SELECT] `name` is mandatory")
+                raise ValidationError("[SELECT] `name` is mandatory")
             if not item['name']:
-                raise ParseException(f"[SELECT] Empty `name` is not allowed")
+                raise EmptyValueError(f"[SELECT] Empty `name` is not allowed")
             if 'as' in keys and not item['as']:
-                raise ParseException(f"[SELECT] Empty `as` is not allowed")
+                raise EmptyValueError(f"[SELECT] Empty `as` is not allowed")
             # check if function exists
         return self
 

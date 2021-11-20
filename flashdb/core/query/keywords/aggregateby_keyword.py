@@ -6,10 +6,6 @@ from flashdb.core.query.keywords.base import Keyword
 
 class AggregateByKeyword(Keyword):
 
-    @staticmethod
-    def mappings() -> Set:
-        pass
-
     def __init__(self, s_query: str = None):
         self.group_name = s_query
 
