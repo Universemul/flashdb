@@ -3,29 +3,17 @@ from typing import Set, Dict
 
 from flashdb.core.helpers.dict_helper import with_lower_keys
 from flashdb.core.query.exceptions.query_exception import ValidationError
-from flashdb.core.query.filters import BaseFilter
 from flashdb.core.query.keywords.base import Keyword
 from flashdb.core.query.operator import Operator
 
 
 class WhereKeyword(Keyword):
 
-    @staticmethod
-    def mappings() -> Set:
-        pass
-
     def __init__(self, s_query: Dict = None):
         self.data = with_lower_keys(s_query) if s_query else {}
         self.keys = self.data.keys()
         self.default_operator = Operator.AND
         self.filters = list()
-
-    @staticmethod
-    def mappings() -> Set:
-        return {
-            "operator",
-            "filters"
-        }
 
     def validate(self) -> "WhereKeyword":
         if not self.data:

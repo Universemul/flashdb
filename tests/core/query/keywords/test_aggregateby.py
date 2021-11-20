@@ -8,8 +8,7 @@ class TestAggregateByKeyword(unittest.TestCase):
 
     def test_validate_success(self):
         expected = 'myColumn'
-        aggregation = AggregateByKeyword(expected).validate()
-        self.assertEqual(expected, aggregation.group_name)
+        AggregateByKeyword(expected).validate()
 
     def test_validate_emptyValue_throwException(self):
         with self.assertRaises(EmptyValueError):

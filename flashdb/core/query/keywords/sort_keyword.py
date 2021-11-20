@@ -16,13 +16,6 @@ class SortKeyword(Keyword):
         self.name = None
         self.order = self.DEFAULT_VALUE
 
-    @staticmethod
-    def mappings() -> Set:
-        return {
-            "name",
-            "order"
-        }
-
     def validate(self) -> "SortKeyword":
         if not self.keys:
             return self

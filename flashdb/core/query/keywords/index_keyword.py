@@ -6,10 +6,6 @@ from flashdb.core.query.keywords.base import Keyword
 
 class IndexKeyword(Keyword):
 
-    @staticmethod
-    def mappings() -> Set:
-        pass
-
     def __init__(self, s_query: str = None):
         self.index = s_query
 

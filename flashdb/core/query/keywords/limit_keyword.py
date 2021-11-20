@@ -6,10 +6,6 @@ from flashdb.core.query.keywords.base import Keyword
 
 class LimitKeyword(Keyword):
 
-    @staticmethod
-    def mappings() -> Set:
-        pass
-
     def __init__(self, s_query: Union[str, int] = None):
         self.data: Union[str, int] = s_query
         self.value = None
